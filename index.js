@@ -56,7 +56,6 @@ server.get("/api/projects/:id", (req, res) => {
         .where("project_id", id)
         .then(actions => {
           project[0].actions = actions
-
           res.status(200).json(project)
         })
         .catch(err => {
@@ -73,7 +72,7 @@ server.get("/api/projects/:id", (req, res) => {
 // add project
 server.post("/api/projects", (req, res) => {
   const project = req.body
-  if (!project.name) {
+  if (!project.Name) {
     res.status(400).json({
       error: `Project should have a name.`
     })
@@ -116,6 +115,7 @@ server.put("/api/projects/:id", (req, res) => {
         })
       } else {
         res.status(200).json(reply)
+        
       }
     })
     .catch(err => {
@@ -295,6 +295,8 @@ server.delete("/api/actions/:id", (req, res) => {
       })
     })
 })
+
+
 
 const PORT = 8888
 server.listen(PORT, function () {
